@@ -1,4 +1,6 @@
 import { useLocation, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { useAppContext } from "./context/AppContext";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -13,10 +15,12 @@ import ListRoom from "./pages/HotelOwner/ListRoom";
 
 const App = () => {
   const inOwnerPath = useLocation().pathname.includes("owner");
+  const { showHotelReg } = useAppContext();
   return (
     <div>
+      <Toaster />
       {!inOwnerPath && <Navbar />}
-      {false && <HotelRegistration />}
+      {showHotelReg && <HotelRegistration />}
       <div className="min-h-[70vh]">
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,5 +1,5 @@
-import Title from "./Title";
 import { testimonials } from "../assets/assets";
+import Title from "./Title";
 import StarRating from "./StarRating";
 
 const Testimonial = () => {
