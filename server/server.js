@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./configs/db.js";
 import connectCloudinary from "./configs/cloudinary.js";
 import clerkWebhooks from "./controllers/clerk.webhooks.controller.js";
+import stripeWebhooks from "./controllers/stripe.webhooks.controller.js";
 import userRouter from "./routes/user.route.js";
 import hotelRouter from "./routes/hotel.route.js";
 import roomRouter from "./routes/room.route.js";
@@ -15,6 +16,13 @@ const PORT = process.env.PORT || 4000;
 
 connectDB();
 connectCloudinary();
+
+// Listen to stripe webhooks
+app.post(
+  "/api/stripe",
+  express.raw({ type: "application/json" }),
+  stripeWebhooks
+);
 
 // Middlewares
 app.use(express.json());

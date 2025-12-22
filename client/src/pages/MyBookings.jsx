@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
-import Title from "../components/Title";
 import { useAppContext } from "../context/AppContext";
+import Title from "../components/Title";
 import toast from "react-hot-toast";
 
 const MyBookings = () => {
@@ -16,6 +16,23 @@ const MyBookings = () => {
 
       if (data.success) {
         setBookings(data.bookings);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handlePayment = async (bookingId) => {
+    try {
+      const { data } = await axios.post(
+        "/api/bookings/stripe-payment",
+        { bookingId },
+        { headers: { Authorization: `Bearer ${await getToken()}` } }
+      );
+      if (data.success) {
+        window.location.href = data.url;
       } else {
         toast.error(data.message);
       }
@@ -106,7 +123,10 @@ const MyBookings = () => {
                 </p>
               </div>
               {!bookings.isPaid && (
-                <button className="px-4 py-1.5 mt-4 text-xs border border-gray-400 rounded-full hover:bg-gray-50 transition-all cursor-pointer">
+                <button
+                  onClick={() => handlePayment(bookings._id)}
+                  className="px-4 py-1.5 mt-4 text-xs border border-gray-400 rounded-full hover:bg-gray-50 transition-all cursor-pointer"
+                >
                   Pay Now
                 </button>
               )}
