@@ -5,7 +5,7 @@ A simple hotel booking website built using the MERN (MongoDB, Express.js, React.
 
 ## Demo
 
-Click the link below to see the demonstration of the Grocery Delivery Website.
+Click the link below to see the demonstration of the Hotel Booking Website.
 
 Link 👉 https://drive.google.com/file/d/1A8VLDsBnGmKHmZVfHuvAbMBHQm1NEPjI/view?usp=sharing 👈
 
@@ -138,3 +138,4 @@ npm run dev
 ![image alt](https://github.com/MrTharinduDasantha/Hotel-Booking-Website/blob/bb2dccc89355b3e09003568acb27c9d3fc43f34e/Img%20-%2016.png)
 
 <h4 align="center"> Don't forget to leave a star ⭐️ </h4>
+
